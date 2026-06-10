@@ -1,15 +1,16 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
-import { appUrl } from '@/lib/utils';
-import { ButtonLink } from '@/components/ui/Button';
-import { Reveal } from '@/components/motion/Reveal';
 import { GlassCard } from '@/components/marketing/primitives';
+import { Reveal } from '@/components/motion/Reveal';
+import { ButtonLink } from '@/components/ui/Button';
 import { founderNote } from '@/data/founder';
+import { appUrl } from '@/lib/utils';
 
 /** Founder's note — port of the app's FounderNote. */
 export function FounderNote() {
-  const { eyebrow, founderInitial, founderName, founderTitle, paragraphs, ctaLabel, ctaAppPath } = founderNote;
+  const { eyebrow, founderInitial, founderName, founderTitle, paragraphs, ctaLabel, ctaAppPath } =
+    founderNote;
 
   return (
     <section id="founder" className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">

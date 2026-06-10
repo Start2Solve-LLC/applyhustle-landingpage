@@ -14,7 +14,12 @@ export function Testimonials() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow={eyebrow}
-          title={<>{title.pre}<span className="text-gradient">{title.accent}</span></>}
+          title={
+            <>
+              {title.pre}
+              <span className="text-gradient">{title.accent}</span>
+            </>
+          }
         />
 
         <Stagger className="mt-12 grid gap-5 md:grid-cols-3" gap={0.08}>

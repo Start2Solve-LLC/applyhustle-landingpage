@@ -1,26 +1,36 @@
 'use client';
 
-import * as React from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { cn } from '@/lib/utils';
-import { EASE_OUT } from '@/lib/motion';
-import { Reveal } from '@/components/motion/Reveal';
-import { SectionHeading, BrowserChrome } from '@/components/marketing/primitives';
+import * as React from 'react';
 import {
-  AtsScoreCard, ResumeRedesignMock, JobFeedMock,
-  InterviewReportCard, LinkedInGapMock, AutoApplyStream,
+  AtsScoreCard,
+  ResumeRedesignMock,
+  JobFeedMock,
+  InterviewReportCard,
+  LinkedInGapMock,
+  AutoApplyStream,
 } from '@/components/marketing/mocks';
+import { SectionHeading, BrowserChrome } from '@/components/marketing/primitives';
+import { Reveal } from '@/components/motion/Reveal';
 import { explorerSection, type ExplorerTabId } from '@/data/featureExplorer';
+import { EASE_OUT } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 
 /** Maps a tab id to its product mock. */
 function tabMock(id: ExplorerTabId): React.ReactNode {
   switch (id) {
-    case 'ats': return <AtsScoreCard />;
-    case 'resume': return <ResumeRedesignMock />;
-    case 'jobs': return <JobFeedMock />;
-    case 'interview': return <InterviewReportCard />;
-    case 'linkedin': return <LinkedInGapMock />;
-    case 'auto': return <AutoApplyStream />;
+    case 'ats':
+      return <AtsScoreCard />;
+    case 'resume':
+      return <ResumeRedesignMock />;
+    case 'jobs':
+      return <JobFeedMock />;
+    case 'interview':
+      return <InterviewReportCard />;
+    case 'linkedin':
+      return <LinkedInGapMock />;
+    case 'auto':
+      return <AutoApplyStream />;
   }
 }
 
@@ -56,7 +66,13 @@ export function FeatureExplorer() {
         <Reveal>
           <SectionHeading
             eyebrow={eyebrow}
-            title={<>{title.pre}<span className="text-gradient">{title.accent}</span>{title.post}</>}
+            title={
+              <>
+                {title.pre}
+                <span className="text-gradient">{title.accent}</span>
+                {title.post}
+              </>
+            }
           />
         </Reveal>
 
@@ -85,10 +101,17 @@ export function FeatureExplorer() {
                         : 'border-transparent text-muted-foreground hover:bg-muted/60',
                     )}
                   >
-                    <Icon className={cn('h-4 w-4 shrink-0', isActive ? 'text-primary' : 'text-muted-foreground')} />
+                    <Icon
+                      className={cn(
+                        'h-4 w-4 shrink-0',
+                        isActive ? 'text-primary' : 'text-muted-foreground',
+                      )}
+                    />
                     <span className="min-w-0">
                       <span className="block text-sm font-semibold">{tab.label}</span>
-                      <span className="hidden truncate text-xs text-muted-foreground lg:block">{tab.blurb}</span>
+                      <span className="hidden truncate text-xs text-muted-foreground lg:block">
+                        {tab.blurb}
+                      </span>
                     </span>
                   </button>
                 );

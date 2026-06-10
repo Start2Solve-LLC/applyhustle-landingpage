@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import type { ReactNode } from 'react';
 
 /** Eyebrow → display heading → optional subhead (app primitive). */
 export function SectionHeading({
@@ -16,7 +16,12 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div className={cn(align === 'center' ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl text-left', className)}>
+    <div
+      className={cn(
+        align === 'center' ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl text-left',
+        className,
+      )}
+    >
       {eyebrow && (
         <div className={cn('flex items-center gap-2', align === 'center' && 'justify-center')}>
           <span className="text-overline text-primary">{eyebrow}</span>

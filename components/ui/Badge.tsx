@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import type { ReactNode } from 'react';
 
 /* Variant recipes ported from frontend/src/components/ui/badge.tsx. */
 
@@ -12,8 +12,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   success: 'border border-success/30 bg-success-subtle text-success',
   warning: 'border border-warning/30 bg-warning-subtle text-warning',
   info: 'border border-info/30 bg-info-subtle text-info',
-  glow:
-    'border border-accent-subtle-border bg-accent-subtle text-primary shadow-[0_0_18px_-6px_color-mix(in_oklab,var(--primary)_75%,transparent)]',
+  glow: 'border border-accent-subtle-border bg-accent-subtle text-primary shadow-[0_0_18px_-6px_color-mix(in_oklab,var(--primary)_75%,transparent)]',
 };
 
 export function Badge({

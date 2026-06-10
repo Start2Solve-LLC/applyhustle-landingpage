@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { cn } from '@/lib/utils';
+import * as React from 'react';
 import { EASE_OUT } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 import { StatCounter } from './StatCounter';
 
 /** Circular ATS-score gauge. Color thresholds mirror the real app. */
@@ -28,13 +28,22 @@ export function GaugeRing({
   const r = (size - stroke) / 2;
   const circ = 2 * Math.PI * r;
   const clamped = Math.max(0, Math.min(100, value));
-  const toneStroke = clamped >= 75 ? 'var(--success)' : clamped >= 50 ? 'var(--warning)' : 'var(--destructive)';
-  const toneText = clamped >= 75 ? 'text-success' : clamped >= 50 ? 'text-warning' : 'text-destructive';
+  const toneStroke =
+    clamped >= 75 ? 'var(--success)' : clamped >= 50 ? 'var(--warning)' : 'var(--destructive)';
+  const toneText =
+    clamped >= 75 ? 'text-success' : clamped >= 50 ? 'text-warning' : 'text-destructive';
 
   return (
     <div className={cn('relative inline-grid place-items-center', className)}>
       <svg ref={ref} width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} stroke="var(--border)" />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          strokeWidth={stroke}
+          stroke="var(--border)"
+        />
         <motion.circle
           cx={size / 2}
           cy={size / 2}
@@ -45,7 +54,11 @@ export function GaugeRing({
           strokeLinecap="round"
           strokeDasharray={circ}
           initial={{ strokeDashoffset: circ }}
-          animate={inView ? { strokeDashoffset: circ - (clamped / 100) * circ } : { strokeDashoffset: circ }}
+          animate={
+            inView
+              ? { strokeDashoffset: circ - (clamped / 100) * circ }
+              : { strokeDashoffset: circ }
+          }
           transition={reduce ? { duration: 0 } : { duration: 1.2, ease: EASE_OUT }}
         />
       </svg>
@@ -54,7 +67,11 @@ export function GaugeRing({
           <div className={cn('text-3xl font-extrabold tracking-tight', toneText)}>
             <StatCounter to={clamped} />
           </div>
-          {label && <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</div>}
+          {label && (
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {label}
+            </div>
+          )}
           {sublabel && <div className="text-[10px] text-muted-foreground/70">{sublabel}</div>}
         </div>
       </div>

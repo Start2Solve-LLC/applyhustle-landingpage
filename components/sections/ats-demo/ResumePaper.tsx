@@ -1,8 +1,8 @@
 'use client';
 
-import * as React from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { UploadCloud, FileText } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 /* Faux résumé skeleton-line widths, cycled per row. */
@@ -12,9 +12,14 @@ const LINE_WIDTH_CLASSES = ['w-[96%]', 'w-[88%]', 'w-[72%]', 'w-[80%]', 'w-[64%]
 function ResumeSection({ title, lines }: { title: string; lines: number }) {
   return (
     <div className="space-y-1.5">
-      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground/80">{title}</div>
+      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground/80">
+        {title}
+      </div>
       {Array.from({ length: lines }).map((_, i) => (
-        <div key={i} className={cn('h-1.5 rounded-full bg-foreground/10', LINE_WIDTH_CLASSES[i % 5])} />
+        <div
+          key={i}
+          className={cn('h-1.5 rounded-full bg-foreground/10', LINE_WIDTH_CLASSES[i % 5])}
+        />
       ))}
     </div>
   );
@@ -46,7 +51,14 @@ export function ResumePaper({
     <button
       type="button"
       onClick={interactive ? onPick : undefined}
-      onDragOver={interactive ? (e) => { e.preventDefault(); setDrag(true); } : undefined}
+      onDragOver={
+        interactive
+          ? (e) => {
+              e.preventDefault();
+              setDrag(true);
+            }
+          : undefined
+      }
       onDragLeave={interactive ? () => setDrag(false) : undefined}
       onDrop={
         interactive
@@ -71,7 +83,9 @@ export function ResumePaper({
         </span>
         <div className="min-w-0">
           <div className="truncate text-sm font-bold text-foreground">{name || 'Your résumé'}</div>
-          <div className="text-[11px] text-muted-foreground">{name ? 'Software Engineer' : 'PDF · DOCX · instant preview'}</div>
+          <div className="text-[11px] text-muted-foreground">
+            {name ? 'Software Engineer' : 'PDF · DOCX · instant preview'}
+          </div>
         </div>
       </div>
 
@@ -94,15 +108,25 @@ export function ResumePaper({
             aria-hidden
             className="pointer-events-none absolute inset-x-4 z-10 h-[2px] rounded-full [background:linear-gradient(90deg,transparent,color-mix(in_oklab,var(--primary)_92%,white)_50%,transparent)] [box-shadow:0_0_16px_3px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
             initial={{ top: '8%', opacity: 0 }}
-            animate={reduce ? { top: '50%', opacity: 0.5 } : { top: ['8%', '90%'], opacity: [0, 1, 1, 0] }}
-            transition={reduce ? { duration: 0 } : { duration: 2.4, ease: 'easeInOut', repeat: Infinity, times: [0, 0.12, 0.88, 1] }}
+            animate={
+              reduce ? { top: '50%', opacity: 0.5 } : { top: ['8%', '90%'], opacity: [0, 1, 1, 0] }
+            }
+            transition={
+              reduce
+                ? { duration: 0 }
+                : { duration: 2.4, ease: 'easeInOut', repeat: Infinity, times: [0, 0.12, 0.88, 1] }
+            }
           />
           <motion.div
             aria-hidden
             className="pointer-events-none absolute inset-x-0 z-0 h-16 -translate-y-1/2 [background:linear-gradient(180deg,transparent,color-mix(in_oklab,var(--primary)_14%,transparent),transparent)]"
             initial={{ top: '8%', opacity: 0 }}
             animate={reduce ? { opacity: 0 } : { top: ['8%', '90%'], opacity: [0, 1, 1, 0] }}
-            transition={reduce ? { duration: 0 } : { duration: 2.4, ease: 'easeInOut', repeat: Infinity, times: [0, 0.12, 0.88, 1] }}
+            transition={
+              reduce
+                ? { duration: 0 }
+                : { duration: 2.4, ease: 'easeInOut', repeat: Infinity, times: [0, 0.12, 0.88, 1] }
+            }
           />
         </>
       )}

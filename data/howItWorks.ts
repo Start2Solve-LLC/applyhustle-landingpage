@@ -1,5 +1,5 @@
-import type { LucideIcon } from 'lucide-react';
 import { Sparkles, Briefcase, Send, CheckCircle2 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface HowItWorksStep {
   id: string;
@@ -38,7 +38,8 @@ export const howItWorksSection: HowItWorksSectionContent = {
     {
       id: 'apply-at-scale',
       title: 'Apply at scale',
-      description: 'US Premium runs autonomous Auto-Apply with guardrails; other tiers stay guided.',
+      description:
+        'US Premium runs autonomous Auto-Apply with guardrails; other tiers stay guided.',
       icon: Send,
     },
     {

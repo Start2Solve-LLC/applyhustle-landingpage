@@ -1,15 +1,20 @@
 'use client';
 
-import type { ComponentType, ReactNode } from 'react';
-import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/Badge';
-import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
-import { GlassCard, SectionHeading } from '@/components/marketing/primitives';
 import {
-  AutoApplyStream, InterviewReportCard, JobFeedMock, ResumeRedesignMock,
-  LinkedInGapMock, CoverLetterMock, TrackerBoardMock,
+  AutoApplyStream,
+  InterviewReportCard,
+  JobFeedMock,
+  ResumeRedesignMock,
+  LinkedInGapMock,
+  CoverLetterMock,
+  TrackerBoardMock,
 } from '@/components/marketing/mocks';
+import { GlassCard, SectionHeading } from '@/components/marketing/primitives';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { Badge } from '@/components/ui/Badge';
 import { bentoSection, type BentoMockId } from '@/data/features';
+import { cn } from '@/lib/utils';
+import type { ComponentType, ReactNode } from 'react';
 
 interface BentoFeaturesProps {
   isUS?: boolean;
@@ -50,13 +55,20 @@ function BentoTile({
 /** Maps a tile's mockId to its product mock (Auto-Apply needs the region flag). */
 function tileMock(mockId: BentoMockId, isUS: boolean): ReactNode {
   switch (mockId) {
-    case 'auto-apply': return <AutoApplyStream guided={!isUS} />;
-    case 'interview': return <InterviewReportCard />;
-    case 'jobs': return <JobFeedMock />;
-    case 'resume': return <ResumeRedesignMock />;
-    case 'linkedin': return <LinkedInGapMock />;
-    case 'cover-letter': return <CoverLetterMock />;
-    case 'tracker': return <TrackerBoardMock />;
+    case 'auto-apply':
+      return <AutoApplyStream guided={!isUS} />;
+    case 'interview':
+      return <InterviewReportCard />;
+    case 'jobs':
+      return <JobFeedMock />;
+    case 'resume':
+      return <ResumeRedesignMock />;
+    case 'linkedin':
+      return <LinkedInGapMock />;
+    case 'cover-letter':
+      return <CoverLetterMock />;
+    case 'tracker':
+      return <TrackerBoardMock />;
   }
 }
 
@@ -69,12 +81,20 @@ export function BentoFeatures({ isUS = true }: BentoFeaturesProps) {
         <Reveal>
           <SectionHeading
             eyebrow={eyebrow}
-            title={<>{title.pre}<span className="text-gradient">{title.accent}</span></>}
+            title={
+              <>
+                {title.pre}
+                <span className="text-gradient">{title.accent}</span>
+              </>
+            }
             sub={subtitle}
           />
         </Reveal>
 
-        <Stagger gap={0.06} className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:auto-rows-[210px] lg:grid-cols-6">
+        <Stagger
+          gap={0.06}
+          className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:auto-rows-[210px] lg:grid-cols-6"
+        >
           {tiles.map((tile) => {
             const badgeLabel = isUS ? tile.badgeUS : tile.badgeIntl;
             return (
@@ -82,7 +102,11 @@ export function BentoFeatures({ isUS = true }: BentoFeaturesProps) {
                 key={tile.mockId}
                 icon={tile.icon}
                 label={isUS ? tile.labelUS : tile.labelIntl}
-                badge={badgeLabel ? <Badge variant={isUS ? 'glow' : 'info'}>{badgeLabel}</Badge> : undefined}
+                badge={
+                  badgeLabel ? (
+                    <Badge variant={isUS ? 'glow' : 'info'}>{badgeLabel}</Badge>
+                  ) : undefined
+                }
                 span={tile.span}
               >
                 {tileMock(tile.mockId, isUS)}

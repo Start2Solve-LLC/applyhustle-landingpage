@@ -26,8 +26,9 @@ export function InterviewReportCard({ className }: { className?: string }) {
         </div>
       </div>
       <p className="rounded-lg border border-border/60 bg-background/40 p-3 text-[11px] leading-relaxed text-muted-foreground">
-        <span className="font-semibold text-foreground">Coach:</span> Strong STAR framing on the system-design answer.
-        Quantify the impact next time — &ldquo;cut latency 40%&rdquo; lands harder than &ldquo;improved performance.&rdquo;
+        <span className="font-semibold text-foreground">Coach:</span> Strong STAR framing on the
+        system-design answer. Quantify the impact next time — &ldquo;cut latency 40%&rdquo; lands
+        harder than &ldquo;improved performance.&rdquo;
       </p>
     </div>
   );

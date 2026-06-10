@@ -17,17 +17,30 @@ const tokenColor = (variable) => `rgb(from var(${variable}) r g b / <alpha-value
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: [
-    './app/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './data/**/*.{ts,tsx}',
-  ],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './data/**/*.{ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
         // --font-sans is set by next/font (Inter) in app/layout.tsx
-        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', 'Menlo', 'Consolas', 'monospace'],
+        sans: [
+          'var(--font-sans)',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif',
+        ],
+        mono: [
+          'ui-monospace',
+          'SFMono-Regular',
+          'SF Mono',
+          'Cascadia Code',
+          'Segoe UI Mono',
+          'Menlo',
+          'Consolas',
+          'monospace',
+        ],
       },
       colors: {
         background: tokenColor('--background'),

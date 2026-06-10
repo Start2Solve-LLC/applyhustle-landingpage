@@ -4,14 +4,35 @@ import { cn } from '@/lib/utils';
 /** Curated job feed — sponsorship-aware (illustrative data, mirrors the app's mock). */
 export function JobFeedMock({ className }: { className?: string }) {
   const jobs = [
-    { company: 'Stripe', role: 'Software Engineer', loc: 'New York, NY', salary: '$150k–$190k', sponsors: true },
-    { company: 'Datadog', role: 'Frontend Engineer', loc: 'Remote (US)', salary: '$140k–$175k', sponsors: true },
-    { company: 'Ramp', role: 'Data Analyst', loc: 'San Francisco', salary: '$120k–$150k', sponsors: false },
+    {
+      company: 'Stripe',
+      role: 'Software Engineer',
+      loc: 'New York, NY',
+      salary: '$150k–$190k',
+      sponsors: true,
+    },
+    {
+      company: 'Datadog',
+      role: 'Frontend Engineer',
+      loc: 'Remote (US)',
+      salary: '$140k–$175k',
+      sponsors: true,
+    },
+    {
+      company: 'Ramp',
+      role: 'Data Analyst',
+      loc: 'San Francisco',
+      salary: '$120k–$150k',
+      sponsors: false,
+    },
   ];
   return (
     <div className={cn('space-y-2 p-4', className)}>
       {jobs.map((j) => (
-        <div key={j.company} className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/40 p-3">
+        <div
+          key={j.company}
+          className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/40 p-3"
+        >
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary text-xs font-bold text-foreground">
             {j.company.slice(0, 2)}
           </span>

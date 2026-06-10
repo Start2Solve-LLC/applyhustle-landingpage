@@ -1,7 +1,7 @@
 'use client';
 
-import { Reveal } from '@/components/motion/Reveal';
 import { MarqueeRow } from '@/components/marketing/primitives';
+import { Reveal } from '@/components/motion/Reveal';
 import { countries, logosStripHeading } from '@/data/countries';
 
 /** Marquee of candidate countries — port of the app's LogosStrip. */

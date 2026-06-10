@@ -1,11 +1,18 @@
-import type { ComponentType } from 'react';
 import { Send, Mic, Briefcase, FileText, Mail, LayoutGrid } from 'lucide-react';
 import { LinkedInGlyph } from '@/components/marketing/primitives/LinkedInGlyph';
+import type { ComponentType } from 'react';
 
 /* Bento grid config — mirrors frontend/src/components/marketing/sections/BentoFeatures.tsx.
    `mockId` is mapped to the matching product mock by the BentoFeatures section. */
 
-export type BentoMockId = 'auto-apply' | 'interview' | 'jobs' | 'resume' | 'linkedin' | 'cover-letter' | 'tracker';
+export type BentoMockId =
+  | 'auto-apply'
+  | 'interview'
+  | 'jobs'
+  | 'resume'
+  | 'linkedin'
+  | 'cover-letter'
+  | 'tracker';
 
 export interface BentoTileConfig {
   mockId: BentoMockId;
@@ -39,11 +46,47 @@ export const bentoSection: BentoSectionContent = {
       badgeIntl: 'Guided',
       span: 'lg:col-span-4 lg:row-span-2',
     },
-    { mockId: 'interview', icon: Mic, labelUS: 'Mock interview', labelIntl: 'Mock interview', span: 'lg:col-span-2 lg:row-span-2' },
-    { mockId: 'jobs', icon: Briefcase, labelUS: 'Job feed', labelIntl: 'Job feed', span: 'lg:col-span-3' },
-    { mockId: 'resume', icon: FileText, labelUS: 'Resume redesign', labelIntl: 'Resume redesign', span: 'lg:col-span-3' },
-    { mockId: 'linkedin', icon: LinkedInGlyph, labelUS: 'LinkedIn audit', labelIntl: 'LinkedIn audit', span: 'lg:col-span-2' },
-    { mockId: 'cover-letter', icon: Mail, labelUS: 'Cover letters', labelIntl: 'Cover letters', span: 'lg:col-span-2' },
-    { mockId: 'tracker', icon: LayoutGrid, labelUS: 'Tracker', labelIntl: 'Tracker', span: 'lg:col-span-2' },
+    {
+      mockId: 'interview',
+      icon: Mic,
+      labelUS: 'Mock interview',
+      labelIntl: 'Mock interview',
+      span: 'lg:col-span-2 lg:row-span-2',
+    },
+    {
+      mockId: 'jobs',
+      icon: Briefcase,
+      labelUS: 'Job feed',
+      labelIntl: 'Job feed',
+      span: 'lg:col-span-3',
+    },
+    {
+      mockId: 'resume',
+      icon: FileText,
+      labelUS: 'Resume redesign',
+      labelIntl: 'Resume redesign',
+      span: 'lg:col-span-3',
+    },
+    {
+      mockId: 'linkedin',
+      icon: LinkedInGlyph,
+      labelUS: 'LinkedIn audit',
+      labelIntl: 'LinkedIn audit',
+      span: 'lg:col-span-2',
+    },
+    {
+      mockId: 'cover-letter',
+      icon: Mail,
+      labelUS: 'Cover letters',
+      labelIntl: 'Cover letters',
+      span: 'lg:col-span-2',
+    },
+    {
+      mockId: 'tracker',
+      icon: LayoutGrid,
+      labelUS: 'Tracker',
+      labelIntl: 'Tracker',
+      span: 'lg:col-span-2',
+    },
   ],
 };

@@ -1,0 +1,17 @@
+# Build output & deps
+.next/
+out/
+build/
+node_modules/
+
+# Lockfiles & generated
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+next-env.d.ts
+*.tsbuildinfo
+
+# Binary / non-formattable assets
+public/
+
+# Markdown changelogs etc. can be added back if you want them formatted

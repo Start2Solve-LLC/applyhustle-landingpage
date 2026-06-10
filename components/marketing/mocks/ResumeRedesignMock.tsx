@@ -18,7 +18,13 @@ export function ResumeRedesignMock({ className }: { className?: string }) {
       </div>
       <div className="mt-4 grid grid-cols-5 gap-1.5">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className={cn('aspect-[3/4] rounded-md border bg-background/60 p-1', i === 0 ? 'border-primary' : 'border-border/60')}>
+          <div
+            key={i}
+            className={cn(
+              'aspect-[3/4] rounded-md border bg-background/60 p-1',
+              i === 0 ? 'border-primary' : 'border-border/60',
+            )}
+          >
             <div className="space-y-0.5">
               <div className="h-1 w-3/4 rounded-full bg-foreground/30" />
               <div className="h-0.5 w-full rounded-full bg-foreground/10" />

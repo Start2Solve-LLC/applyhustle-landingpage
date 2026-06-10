@@ -1,15 +1,16 @@
 'use client';
 
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { appUrl } from '@/lib/utils';
-import { ButtonLink } from '@/components/ui/Button';
-import { Reveal } from '@/components/motion/Reveal';
 import { GlassCard, KeyCap } from '@/components/marketing/primitives';
+import { Reveal } from '@/components/motion/Reveal';
+import { ButtonLink } from '@/components/ui/Button';
 import { finalCtaContent } from '@/data/finalCta';
+import { appUrl } from '@/lib/utils';
 
 /** Closing call-to-action — port of the app's FinalCta. */
 export function FinalCta() {
-  const { title, subtitle, primaryCta, secondaryCta, reassuranceNote, shortcutHint } = finalCtaContent;
+  const { title, subtitle, primaryCta, secondaryCta, reassuranceNote, shortcutHint } =
+    finalCtaContent;
 
   return (
     <section id="cta" className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
@@ -24,19 +25,29 @@ export function FinalCta() {
             <p className="mx-auto mt-5 max-w-xl text-body-lg text-muted-foreground">{subtitle}</p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <ButtonLink href={appUrl(primaryCta.appPath)} variant="glow" size="xl" className="group w-full sm:w-auto">
+              <ButtonLink
+                href={appUrl(primaryCta.appPath)}
+                variant="glow"
+                size="xl"
+                className="group w-full sm:w-auto"
+              >
                 {primaryCta.label}
                 <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
               </ButtonLink>
-              <ButtonLink href={appUrl(secondaryCta.appPath)} variant="outline" size="xl" className="w-full sm:w-auto">
+              <ButtonLink
+                href={appUrl(secondaryCta.appPath)}
+                variant="outline"
+                size="xl"
+                className="w-full sm:w-auto"
+              >
                 {secondaryCta.label}
               </ButtonLink>
             </div>
 
-            <div className="mt-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 text-xs text-muted-foreground">
+              <Sparkles className="h-3.5 w-3.5 shrink-0 text-primary" />
               <span>{reassuranceNote}</span>
-              <span className="mx-1 h-3 w-px bg-border/60" aria-hidden />
+              <span className="mx-1 hidden h-3 w-px bg-border/60 sm:block" aria-hidden />
               <span className="inline-flex items-center gap-1.5">
                 {shortcutHint.pre}
                 {shortcutHint.keys.map((key) => (

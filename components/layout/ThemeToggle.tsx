@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 /* Must match the storage key read by the no-flash init script in app/layout.tsx. */
 export const THEME_STORAGE_KEY = 'applyhustle-landing-theme';

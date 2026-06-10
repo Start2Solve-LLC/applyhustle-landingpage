@@ -1,8 +1,8 @@
 'use client';
 
-import type { ReactNode } from 'react';
 import { useReducedMotion } from 'motion/react';
 import { cn } from '@/lib/utils';
+import type { ReactNode } from 'react';
 
 /**
  * Infinite horizontal marquee with edge fades. Pauses on hover; static under
@@ -27,14 +27,23 @@ export function MarqueeRow({
   );
 
   if (reduce) {
-    return <div className={cn('flex flex-wrap items-center justify-center gap-x-12 gap-y-4', className)}>{children}</div>;
+    return (
+      <div className={cn('flex flex-wrap items-center justify-center gap-x-12 gap-y-4', className)}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <div className={cn('relative overflow-hidden', className)}>
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent" />
-      <div className={cn('flex w-max [animation:marquee_linear_infinite] hover:[animation-play-state:paused]', durationClassName)}>
+      <div
+        className={cn(
+          'flex w-max [animation:marquee_linear_infinite] hover:[animation-play-state:paused]',
+          durationClassName,
+        )}
+      >
         {items}
         {items}
       </div>

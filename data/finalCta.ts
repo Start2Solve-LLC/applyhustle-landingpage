@@ -11,7 +11,8 @@ export interface FinalCtaContent {
 
 export const finalCtaContent: FinalCtaContent = {
   title: { pre: 'Stop applying. ', accent: 'Start interviewing.' },
-  subtitle: 'Kick off free, inspect the signal, and upgrade when Auto-Apply matters for your search.',
+  subtitle:
+    'Kick off free, inspect the signal, and upgrade when Auto-Apply matters for your search.',
   primaryCta: { label: 'Get started — free', appPath: '/signup' },
   secondaryCta: { label: 'Try the ATS Checker', appPath: '/ats-checker' },
   reassuranceNote: 'No credit card · Cancel anytime',

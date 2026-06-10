@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { Minus, Plus } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { EASE_OUT } from '@/lib/motion';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useState } from 'react';
 import { Reveal } from '@/components/motion/Reveal';
 import { faqSection } from '@/data/faq';
+import { EASE_OUT } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 
 /** Animated single-open FAQ accordion — port of the app's Faq. */
 export function Faq() {
@@ -42,12 +42,16 @@ export function Faq() {
                     onClick={() => setOpenEntryId(open ? null : entry.id)}
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                   >
-                    <span className="text-base font-semibold text-foreground">{entry.question}</span>
+                    <span className="text-base font-semibold text-foreground">
+                      {entry.question}
+                    </span>
                     <span
                       aria-hidden
                       className={cn(
                         'grid h-7 w-7 shrink-0 place-items-center rounded-full transition-colors',
-                        open ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground',
+                        open
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground',
                       )}
                     >
                       {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
@@ -67,7 +71,9 @@ export function Faq() {
                         transition={reduce ? { duration: 0 } : { duration: 0.3, ease: EASE_OUT }}
                         className="overflow-hidden"
                       >
-                        <p className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">{entry.answer}</p>
+                        <p className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">
+                          {entry.answer}
+                        </p>
                       </motion.div>
                     )}
                   </AnimatePresence>

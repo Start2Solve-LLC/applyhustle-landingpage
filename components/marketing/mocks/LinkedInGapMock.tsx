@@ -23,10 +23,17 @@ export function LinkedInGapMock({ className }: { className?: string }) {
       <ul className="mt-4 space-y-2">
         {gaps.map((g) => (
           <li key={g.text} className="flex items-center gap-2 text-xs">
-            <span className={cn('grid h-4 w-4 place-items-center rounded-full', g.done ? 'bg-success-subtle text-success' : 'bg-secondary text-muted-foreground')}>
+            <span
+              className={cn(
+                'grid h-4 w-4 place-items-center rounded-full',
+                g.done ? 'bg-success-subtle text-success' : 'bg-secondary text-muted-foreground',
+              )}
+            >
               {g.done ? <Check className="h-2.5 w-2.5" /> : <Circle className="h-2 w-2" />}
             </span>
-            <span className={cn(g.done ? 'text-muted-foreground line-through' : 'text-foreground')}>{g.text}</span>
+            <span className={cn(g.done ? 'text-muted-foreground line-through' : 'text-foreground')}>
+              {g.text}
+            </span>
           </li>
         ))}
       </ul>

@@ -18,17 +18,14 @@ export const founderNote: FounderNoteContent = {
   founderTitle: 'Founder · Start2Solve',
   paragraphs: [
     {
-      text:
-        'I have seen students, graduates, and professionals spend hours applying to jobs, tailoring resumes, writing cover letters, and still not getting enough responses. ',
+      text: 'I have seen students, graduates, and professionals spend hours applying to jobs, tailoring resumes, writing cover letters, and still not getting enough responses. ',
       accent: 'ApplyHustle is built to change that.',
     },
     {
-      text:
-        'Our goal is simple: help job seekers apply faster, apply smarter, and track everything clearly — without losing quality.',
+      text: 'Our goal is simple: help job seekers apply faster, apply smarter, and track everything clearly — without losing quality.',
     },
     {
-      text:
-        'ApplyHustle is not just about sending more applications. It is about sending better applications with the right resume, the right cover letter, and the right strategy.',
+      text: 'ApplyHustle is not just about sending more applications. It is about sending better applications with the right resume, the right cover letter, and the right strategy.',
     },
   ],
   ctaLabel: 'Read the full story',

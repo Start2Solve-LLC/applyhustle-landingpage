@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { FileText, Sparkles } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
 import { EASE_OUT } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 
 /** Cover-letter generator — typing lines. */
 export function CoverLetterMock({ className }: { className?: string }) {

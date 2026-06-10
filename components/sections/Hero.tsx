@@ -1,14 +1,14 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, Zap, Star, CheckCircle2, TrendingUp } from 'lucide-react';
-import { appUrl } from '@/lib/utils';
-import { heroContent } from '@/data/hero';
-import { ButtonLink } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
-import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
-import { RegionToggle, BrowserChrome } from '@/components/marketing/primitives';
+import { motion, useReducedMotion } from 'motion/react';
 import { LiveStatsCard } from '@/components/marketing/mocks';
+import { RegionToggle, BrowserChrome } from '@/components/marketing/primitives';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { Badge } from '@/components/ui/Badge';
+import { ButtonLink } from '@/components/ui/Button';
+import { heroContent } from '@/data/hero';
+import { appUrl } from '@/lib/utils';
 
 interface HeroProps {
   isUS: boolean;
@@ -18,7 +18,17 @@ interface HeroProps {
 /** Above-the-fold hero — port of the app's marketing Hero (region-aware copy + live stats mock). */
 export function Hero({ isUS, onRegionChange }: HeroProps) {
   const reduce = useReducedMotion();
-  const { badgeLabel, headline, copy, primaryCta, secondaryCta, ratingSignal, trustSignals, mockBrowserUrl, liveBadges } = heroContent;
+  const {
+    badgeLabel,
+    headline,
+    copy,
+    primaryCta,
+    secondaryCta,
+    ratingSignal,
+    trustSignals,
+    mockBrowserUrl,
+    liveBadges,
+  } = heroContent;
   const paragraph = isUS ? copy.us : copy.intl;
 
   return (
@@ -37,7 +47,7 @@ export function Hero({ isUS, onRegionChange }: HeroProps) {
             </Badge>
           </StaggerItem>
 
-          <h1 className="mt-6 text-display-2xl text-foreground">
+          <h1 className="mt-6 break-words text-display-2xl text-foreground">
             <span className="block">{headline.pre}</span>
             <span className="block text-gradient">{headline.accent}</span>
             <span className="block">{headline.post}</span>
@@ -52,11 +62,21 @@ export function Hero({ isUS, onRegionChange }: HeroProps) {
           </StaggerItem>
 
           <StaggerItem className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start">
-            <ButtonLink href={appUrl(primaryCta.appPath)} variant="glow" size="xl" className="group w-full sm:w-auto">
+            <ButtonLink
+              href={appUrl(primaryCta.appPath)}
+              variant="glow"
+              size="xl"
+              className="group w-full sm:w-auto"
+            >
               {primaryCta.label}
               <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
             </ButtonLink>
-            <ButtonLink href={appUrl(secondaryCta.appPath)} variant="outline" size="xl" className="w-full sm:w-auto">
+            <ButtonLink
+              href={appUrl(secondaryCta.appPath)}
+              variant="outline"
+              size="xl"
+              className="w-full sm:w-auto"
+            >
               {secondaryCta.label}
               {secondaryCta.noteLabel && (
                 <span className="ml-1 rounded-full bg-success-subtle px-1.5 py-0.5 text-[10px] font-semibold text-success">

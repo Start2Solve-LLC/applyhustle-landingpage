@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
-import { appUrl, cn } from '@/lib/utils';
-import { EASE_OUT } from '@/lib/motion';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { ButtonLink } from '@/components/ui/Button';
-import { ThemeToggle } from './ThemeToggle';
 import { navLinks, loginCta, getStartedCta } from '@/data/nav';
+import { EASE_OUT } from '@/lib/motion';
+import { appUrl, cn } from '@/lib/utils';
+import { ThemeToggle } from './ThemeToggle';
 
 /** Sticky marketing navbar — port of the app's Navbar (logged-out state). */
 export function Navbar() {
@@ -27,7 +27,9 @@ export function Navbar() {
   // Scrollspy — highlight the in-view section in the nav.
   useEffect(() => {
     const ids = navLinks.filter((l) => l.href.startsWith('#')).map((l) => l.href.slice(1));
-    const els = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
     if (!els.length) return;
 
     const observer = new IntersectionObserver(
@@ -61,7 +63,11 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         {/* Brand */}
-        <a href="#top" className="group flex items-center gap-2.5 rounded-md" aria-label="ApplyHustle — back to top">
+        <a
+          href="#top"
+          className="group flex items-center gap-2.5 rounded-md"
+          aria-label="ApplyHustle — back to top"
+        >
           <Image
             src="/images/applyhustle-logo-latte.png"
             alt=""
@@ -92,7 +98,9 @@ export function Navbar() {
                 aria-current={isActive ? 'true' : undefined}
                 className={cn(
                   'rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                  isActive ? 'bg-muted/60 text-foreground' : 'text-muted-foreground hover:text-foreground',
+                  isActive
+                    ? 'bg-muted/60 text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
                 )}
               >
                 {link.label}
@@ -104,10 +112,18 @@ export function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
-          <ButtonLink href={appUrl(loginCta.appPath)} variant="ghost" className="hidden sm:inline-flex">
+          <ButtonLink
+            href={appUrl(loginCta.appPath)}
+            variant="ghost"
+            className="hidden sm:inline-flex"
+          >
             {loginCta.label}
           </ButtonLink>
-          <ButtonLink href={appUrl(getStartedCta.appPath)} variant="default" className="hidden sm:inline-flex">
+          <ButtonLink
+            href={appUrl(getStartedCta.appPath)}
+            variant="default"
+            className="hidden sm:inline-flex"
+          >
             {getStartedCta.label}
           </ButtonLink>
           {/* Mobile menu toggle */}
@@ -134,7 +150,10 @@ export function Navbar() {
             transition={{ duration: 0.24, ease: EASE_OUT }}
             className="overflow-hidden border-t border-border/60 bg-background/95 backdrop-blur-xl lg:hidden"
           >
-            <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6" aria-label="Mobile">
+            <nav
+              className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
+              aria-label="Mobile"
+            >
               {navLinks.map((link) => (
                 <a
                   key={link.href}

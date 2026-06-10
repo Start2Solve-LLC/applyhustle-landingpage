@@ -1,8 +1,8 @@
 'use client';
 
-import * as React from 'react';
-import { useReducedMotion } from 'motion/react';
 import { Briefcase, FileText, Send, TrendingUp, Users } from 'lucide-react';
+import { useReducedMotion } from 'motion/react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 /**
@@ -50,11 +50,14 @@ function LiveNumber({
   React.useEffect(() => {
     if (!live || reduce) return;
     let interval: ReturnType<typeof setInterval>;
-    const startDelay = setTimeout(() => {
-      interval = setInterval(() => {
-        setVal((v) => v + 1 + Math.floor(Math.random() * 3)); // +1..3
-      }, liveEveryMs);
-    }, duration * 1000 + 200);
+    const startDelay = setTimeout(
+      () => {
+        interval = setInterval(() => {
+          setVal((v) => v + 1 + Math.floor(Math.random() * 3)); // +1..3
+        }, liveEveryMs);
+      },
+      duration * 1000 + 200,
+    );
     return () => {
       clearTimeout(startDelay);
       clearInterval(interval);
@@ -77,8 +80,24 @@ export function LiveStatsCard({ className }: { className?: string }) {
   }[] = [
     { icon: Briefcase, label: 'Jobs live today', base: 1840, jitter: 60, tone: 'text-foreground' },
     { icon: Users, label: 'Early members', base: 268, jitter: 9, tone: 'text-foreground' },
-    { icon: FileText, label: 'Résumés ATS-checked', base: 1124, jitter: 32, live: true, liveEveryMs: 6000, tone: 'text-success' },
-    { icon: Send, label: 'Applications sent today', base: 540, jitter: 22, live: true, liveEveryMs: 3200, tone: 'text-primary' },
+    {
+      icon: FileText,
+      label: 'Résumés ATS-checked',
+      base: 1124,
+      jitter: 32,
+      live: true,
+      liveEveryMs: 6000,
+      tone: 'text-success',
+    },
+    {
+      icon: Send,
+      label: 'Applications sent today',
+      base: 540,
+      jitter: 22,
+      live: true,
+      liveEveryMs: 3200,
+      tone: 'text-primary',
+    },
   ];
   return (
     <div className={cn('p-5 sm:p-6', className)}>
@@ -98,7 +117,12 @@ export function LiveStatsCard({ className }: { className?: string }) {
           <div key={s.label} className="rounded-xl border border-border/60 bg-background/40 p-3.5">
             <s.icon className="h-4 w-4 text-muted-foreground/70" />
             <div className={cn('mt-2 text-2xl font-extrabold tabular-nums', s.tone)}>
-              <LiveNumber base={s.base} jitter={s.jitter} live={s.live} liveEveryMs={s.liveEveryMs} />
+              <LiveNumber
+                base={s.base}
+                jitter={s.jitter}
+                live={s.live}
+                liveEveryMs={s.liveEveryMs}
+              />
             </div>
             <div className="mt-0.5 text-[11px] text-muted-foreground">{s.label}</div>
           </div>

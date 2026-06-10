@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { animate, useInView, useReducedMotion } from 'motion/react';
+import * as React from 'react';
 import { EASE_OUT } from '@/lib/motion';
 
 /** Count-up number, triggered when scrolled into view (app primitive). */
@@ -44,7 +44,10 @@ export function StatCounter({
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {val.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}
+      {val.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      })}
       {suffix}
     </span>
   );

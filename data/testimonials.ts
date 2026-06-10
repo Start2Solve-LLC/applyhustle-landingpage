@@ -29,7 +29,8 @@ export const testimonialsSection: TestimonialsSectionContent = {
       name: 'Aryan G.',
       initials: 'AG',
       role: 'Software Engineer · security unicorn',
-      quote: 'My interview pipeline went from chaos to predictable. Seeing every touchpoint beats fifty browser tabs.',
+      quote:
+        'My interview pipeline went from chaos to predictable. Seeing every touchpoint beats fifty browser tabs.',
     },
     {
       name: 'Priya R.',

@@ -45,7 +45,9 @@ export function RegionToggle({
               <motion.span
                 layoutId="region-pill"
                 className="absolute inset-0 -z-10 rounded-full bg-primary"
-                transition={reduce ? { duration: 0 } : { type: 'spring', stiffness: 400, damping: 32 }}
+                transition={
+                  reduce ? { duration: 0 } : { type: 'spring', stiffness: 400, damping: 32 }
+                }
               />
             )}
             <span className="mr-1">{opt.flag}</span>

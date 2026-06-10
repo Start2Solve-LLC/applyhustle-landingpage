@@ -1,12 +1,17 @@
+import { seoConfig } from '@/lib/seo';
 import type { MetadataRoute } from 'next';
-import { siteConfig } from '@/data/site';
 
+/**
+ * Generates /sitemap.xml. The landing site is a single indexable route today;
+ * add new pages here as the site grows (in-page #anchors are NOT separate URLs
+ * and must not be listed).
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: siteConfig.url,
+      url: `${seoConfig.url}/`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 1,
     },
   ];

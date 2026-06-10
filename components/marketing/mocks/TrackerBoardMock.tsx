@@ -13,7 +13,9 @@ export function TrackerBoardMock({ className }: { className?: string }) {
       {cols.map((c) => (
         <div key={c.name} className="rounded-lg border border-border/60 bg-background/40 p-2">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">{c.name}</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+              {c.name}
+            </span>
             <span className={cn('text-xs font-bold', c.tone)}>{c.count}</span>
           </div>
           <div className="mt-2 space-y-1">

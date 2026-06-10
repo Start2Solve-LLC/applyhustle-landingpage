@@ -12,7 +12,11 @@ export function MarketingFooter() {
         <div className="grid grid-cols-2 gap-10 md:grid-cols-6">
           {/* Brand */}
           <div className="col-span-2">
-            <a href="#top" className="flex items-center gap-2.5 rounded-md" aria-label="ApplyHustle — back to top">
+            <a
+              href="#top"
+              className="flex items-center gap-2.5 rounded-md"
+              aria-label="ApplyHustle — back to top"
+            >
               <Image
                 src="/images/applyhustle-logo-latte.png"
                 alt=""
@@ -31,7 +35,9 @@ export function MarketingFooter() {
                 Apply<span className="text-primary">Hustle</span>
               </span>
             </a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">{footerTagline}</p>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              {footerTagline}
+            </p>
             <p className="mt-4 text-xs text-muted-foreground/70">{footerBylineNote}</p>
           </div>
 
@@ -41,7 +47,10 @@ export function MarketingFooter() {
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-left text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    <a
+                      href={link.href}
+                      className="text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -52,7 +61,9 @@ export function MarketingFooter() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row">
-          <p className="text-xs text-muted-foreground">© {currentYear} ApplyHustle. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">
+            © {currentYear} ApplyHustle. All rights reserved.
+          </p>
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted-foreground/70">Theme</span>
             <ThemeToggle />

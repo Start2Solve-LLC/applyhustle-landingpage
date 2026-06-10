@@ -1,13 +1,19 @@
 'use client';
 
-import * as React from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { Check, Circle, Send } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { motion, useReducedMotion } from 'motion/react';
+import * as React from 'react';
 import { EASE_OUT } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 
 /** Autonomous Auto-Apply activity stream (US Premium). Auto-appends rows in view. */
-export function AutoApplyStream({ guided = false, className }: { guided?: boolean; className?: string }) {
+export function AutoApplyStream({
+  guided = false,
+  className,
+}: {
+  guided?: boolean;
+  className?: string;
+}) {
   const reduce = useReducedMotion();
   const seed = React.useMemo(
     () => [
@@ -53,7 +59,12 @@ export function AutoApplyStream({ guided = false, className }: { guided?: boolea
             transition={{ duration: 0.3, ease: EASE_OUT }}
             className="flex items-center gap-2.5 rounded-lg border border-border/50 bg-background/40 px-3 py-2"
           >
-            <span className={cn('grid h-6 w-6 shrink-0 place-items-center rounded-md', guided ? 'bg-info-subtle text-info' : 'bg-success-subtle text-success')}>
+            <span
+              className={cn(
+                'grid h-6 w-6 shrink-0 place-items-center rounded-md',
+                guided ? 'bg-info-subtle text-info' : 'bg-success-subtle text-success',
+              )}
+            >
               {guided ? <Circle className="h-3 w-3" /> : <Check className="h-3 w-3" />}
             </span>
             <span className="min-w-0 flex-1 truncate text-xs">

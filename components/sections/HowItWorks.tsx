@@ -13,13 +13,20 @@ export function HowItWorks() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow={eyebrow}
-          title={<>{titleLeading} <span className="text-gradient">{titleAccent}</span></>}
+          title={
+            <>
+              {titleLeading} <span className="text-gradient">{titleAccent}</span>
+            </>
+          }
           sub={subtitle}
         />
 
         <div className="relative mt-14">
           {/* Connecting hairline behind the row (desktop only) */}
-          <div aria-hidden className="pointer-events-none absolute left-0 right-0 top-12 hidden h-px bg-border/60 lg:block" />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-0 right-0 top-12 hidden h-px bg-border/60 lg:block"
+          />
 
           <Stagger gap={0.1} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => {

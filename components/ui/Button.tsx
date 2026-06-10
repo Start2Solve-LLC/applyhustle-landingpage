@@ -1,5 +1,5 @@
-import type { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
+import type { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 
 /* Variant recipes ported from frontend/src/components/ui/button.tsx
    (cva replaced with plain Record maps — no extra dependencies). */
@@ -18,10 +18,10 @@ const baseClasses = [
 const variantClasses: Record<ButtonVariant, string> = {
   default:
     'bg-primary text-primary-foreground shadow-elev-1 hover:bg-[color-mix(in_oklab,var(--primary)_92%,white)] dark:hover:bg-[color-mix(in_oklab,var(--primary)_88%,white)]',
-  outline: 'border border-border bg-transparent text-foreground hover:bg-muted/60 hover:border-hairline-strong',
+  outline:
+    'border border-border bg-transparent text-foreground hover:bg-muted/60 hover:border-hairline-strong',
   ghost: 'text-foreground/80 hover:text-foreground hover:bg-muted/60',
-  glow:
-    'bg-primary text-primary-foreground shadow-[0_0_0_1px_color-mix(in_oklab,var(--primary)_35%,transparent),0_4px_16px_-8px_color-mix(in_oklab,var(--primary)_45%,transparent)] hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--primary)_45%,transparent),0_6px_20px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)] hover:-translate-y-px',
+  glow: 'bg-primary text-primary-foreground shadow-[0_0_0_1px_color-mix(in_oklab,var(--primary)_35%,transparent),0_4px_16px_-8px_color-mix(in_oklab,var(--primary)_45%,transparent)] hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--primary)_45%,transparent),0_6px_20px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)] hover:-translate-y-px',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

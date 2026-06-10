@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { Check, Plus } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
 import { EASE_OUT } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 import { GaugeRing } from '../primitives';
 
 const ScoreBar = ({ label, value }: { label: string; value: number }) => (
@@ -54,12 +54,18 @@ export function AtsScoreCard({
       </div>
       <div className="mt-5 flex flex-wrap gap-1.5">
         {matched.map((k) => (
-          <span key={k} className="inline-flex items-center gap-1 rounded-full bg-success-subtle px-2 py-0.5 text-[11px] font-medium text-success">
+          <span
+            key={k}
+            className="inline-flex items-center gap-1 rounded-full bg-success-subtle px-2 py-0.5 text-[11px] font-medium text-success"
+          >
             <Check className="h-3 w-3" /> {k}
           </span>
         ))}
         {missing.map((k) => (
-          <span key={k} className="inline-flex items-center gap-1 rounded-full bg-warning-subtle px-2 py-0.5 text-[11px] font-medium text-warning">
+          <span
+            key={k}
+            className="inline-flex items-center gap-1 rounded-full bg-warning-subtle px-2 py-0.5 text-[11px] font-medium text-warning"
+          >
             <Plus className="h-3 w-3" /> {k}
           </span>
         ))}

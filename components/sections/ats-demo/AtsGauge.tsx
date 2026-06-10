@@ -30,9 +30,12 @@ export function AtsGauge({ value, size = 244 }: { value: number; size?: number }
   const surfaceY = 192 - (v / 100) * 184;
 
   return (
-    <div className="relative grid place-items-center">
+    <div
+      className="relative grid aspect-square w-full shrink-0 place-items-center"
+      style={{ maxWidth: size }}
+    >
       {/* Liquid fill, clipped to the inner disc */}
-      <svg viewBox="0 0 200 200" width={size - 38} height={size - 38} className="absolute" aria-hidden>
+      <svg viewBox="0 0 200 200" className="absolute inset-0 m-auto h-[84%] w-[84%]" aria-hidden>
         <defs>
           <clipPath id="atsWaveClip">
             <circle cx="100" cy="100" r="92" />
@@ -43,7 +46,12 @@ export function AtsGauge({ value, size = 244 }: { value: number; size?: number }
           </linearGradient>
         </defs>
         <g clipPath="url(#atsWaveClip)">
-          <circle cx="100" cy="100" r="92" fill="color-mix(in oklab, var(--primary) 7%, transparent)" />
+          <circle
+            cx="100"
+            cy="100"
+            r="92"
+            fill="color-mix(in oklab, var(--primary) 7%, transparent)"
+          />
           {/* back wave */}
           <g transform={`translate(0 ${surfaceY})`}>
             <g className="ats-wave--slow">
@@ -67,9 +75,8 @@ export function AtsGauge({ value, size = 244 }: { value: number; size?: number }
 
       {/* Progress ring */}
       <svg
-        width={size}
-        height={size}
-        className="-rotate-90 [filter:drop-shadow(0_0_10px_color-mix(in_oklab,var(--primary)_45%,transparent))]"
+        viewBox={`0 0 ${size} ${size}`}
+        className="h-full w-full -rotate-90 [filter:drop-shadow(0_0_10px_color-mix(in_oklab,var(--primary)_45%,transparent))]"
       >
         <circle
           cx={size / 2}
@@ -95,11 +102,13 @@ export function AtsGauge({ value, size = 244 }: { value: number; size?: number }
       {/* Center readout */}
       <div className="absolute inset-0 grid place-items-center text-center">
         <div>
-          <div className="text-5xl font-extrabold tabular-nums tracking-tight text-foreground drop-shadow-[0_0_18px_color-mix(in_oklab,var(--primary)_55%,transparent)]">
+          <div className="text-4xl font-extrabold tabular-nums tracking-tight text-foreground drop-shadow-[0_0_18px_color-mix(in_oklab,var(--primary)_55%,transparent)] sm:text-5xl">
             {Math.round(v)}
-            <span className="align-top text-2xl">%</span>
+            <span className="align-top text-xl sm:text-2xl">%</span>
           </div>
-          <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">ATS match</div>
+          <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            ATS match
+          </div>
         </div>
       </div>
     </div>

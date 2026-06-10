@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
+import * as React from 'react';
 import { fadeUp, reducedFade, staggerParent, viewportOnce, EASE_OUT, DUR } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
@@ -20,11 +20,16 @@ interface RevealProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const offset = (from: Dir, d: number) => {
   switch (from) {
-    case 'up': return { y: d };
-    case 'down': return { y: -d };
-    case 'left': return { x: d };
-    case 'right': return { x: -d };
-    default: return {};
+    case 'up':
+      return { y: d };
+    case 'down':
+      return { y: -d };
+    case 'left':
+      return { x: d };
+    case 'right':
+      return { x: -d };
+    default:
+      return {};
   }
 };
 
@@ -109,7 +114,11 @@ export function StaggerItem({ as = 'div', className, children, ...rest }: Stagge
   const reduce = useReducedMotion();
   const MotionTag = motion[as] as typeof motion.div;
   return (
-    <MotionTag className={cn(className)} variants={reduce ? reducedFade : fadeUp} {...(rest as Record<string, unknown>)}>
+    <MotionTag
+      className={cn(className)}
+      variants={reduce ? reducedFade : fadeUp}
+      {...(rest as Record<string, unknown>)}
+    >
       {children}
     </MotionTag>
   );
