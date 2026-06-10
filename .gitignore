@@ -8,9 +8,18 @@
 # production
 /build
 
+# tooling caches
+.eslintcache
+/coverage
+
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+
+# editors
+.idea/
+*.swp
 
 # debug
 npm-debug.log*

@@ -1,0 +1,35 @@
+# Deps & build output (reinstalled/rebuilt inside the image)
+node_modules
+.next
+out
+build
+
+# VCS & CI
+.git
+.gitignore
+.github
+
+# Tooling & hooks (not needed to build the app)
+.husky
+.eslintcache
+coverage
+
+# Local env & secrets — NEVER copy into the image (.env.example is allowed)
+.env
+.env.*
+!.env.example
+
+# Docker meta
+Dockerfile
+.dockerignore
+
+# Editor / OS noise
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Docs & logs
+*.md
+*.log
+npm-debug.log*
