@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ════════════════════════════════════════════════════════════════════════
+   ApplyHustle design tokens — copied verbatim from frontend/src/index.css
+   (the app's design system) so both projects share one visual language.
+   Light: warm-cream "Cosmic Latte" surfaces. Dark: graphite + brighter
+   electric violet. Tailwind utilities resolve to these variables via
+   tailwind.config.js. Dark mode = `.dark` class on <html>.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ───────────── Light theme ───────────── */
+:root {
+  --radius: 0.75rem;
+
+  /* Accent parameter — swap --accent-h to retheme (violet 285 · emerald 155 · blue 255) */
+  --accent-h: 285;
+  --primary: oklch(0.55 0.22 var(--accent-h));
+  --primary-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.55 0.22 var(--accent-h));
+  --accent-foreground: oklch(0.99 0 0);
+  --ring: oklch(0.55 0.22 var(--accent-h));
+  --accent-subtle: color-mix(in oklab, var(--primary) 12%, transparent);
+  --accent-subtle-border: color-mix(in oklab, var(--primary) 28%, transparent);
+
+  /* Neutral surface ramp */
+  --background: oklch(0.976 0.02 92); /* Cosmic Latte #FFF8E7 — warm cream */
+  --foreground: oklch(0.205 0.006 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0.006 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0.006 285);
+  --secondary: oklch(0.965 0.003 285);
+  --secondary-foreground: oklch(0.30 0.006 285);
+  --muted: oklch(0.965 0.003 285);
+  --muted-foreground: oklch(0.50 0.008 285);
+  --border: oklch(0.92 0.004 285);
+  --input: oklch(0.90 0.004 285);
+
+  /* Semantic */
+  --destructive: oklch(0.58 0.21 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --destructive-subtle: color-mix(in oklab, var(--destructive) 12%, transparent);
+  --success: oklch(0.60 0.15 150);
+  --success-foreground: oklch(0.99 0 0);
+  --success-subtle: color-mix(in oklab, var(--success) 14%, transparent);
+  --warning: oklch(0.72 0.16 75);
+  --warning-foreground: oklch(0.20 0.02 75);
+  --warning-subtle: color-mix(in oklab, var(--warning) 16%, transparent);
+  --info: oklch(0.58 0.18 255);
+  --info-foreground: oklch(0.99 0 0);
+  --info-subtle: color-mix(in oklab, var(--info) 14%, transparent);
+
+  --glow: var(--primary);
+
+  /* Elevation */
+  --hairline: color-mix(in oklab, var(--foreground) 9%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--foreground) 16%, transparent);
+  --elev-1: 0 1px 2px -1px color-mix(in oklab, var(--foreground) 10%, transparent);
+  --elev-2: 0 2px 4px -2px color-mix(in oklab, var(--foreground) 10%, transparent),
+            0 4px 12px -4px color-mix(in oklab, var(--foreground) 8%, transparent);
+  --elev-3: 0 8px 24px -8px color-mix(in oklab, var(--foreground) 14%, transparent),
+            0 2px 6px -2px color-mix(in oklab, var(--foreground) 8%, transparent);
+  --elev-4: 0 16px 48px -12px color-mix(in oklab, var(--foreground) 22%, transparent),
+            0 4px 12px -4px color-mix(in oklab, var(--foreground) 10%, transparent);
+
+  /* Motion */
+  --dur-instant: 80ms;
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+  --dur-slower: 600ms;
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.30, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ───────────── Dark theme — near-black graphite, brighter violet ───────────── */
+.dark {
+  --accent-h: 285;
+  --primary: oklch(0.70 0.19 var(--accent-h));
+  --primary-foreground: oklch(0.16 0.01 285);
+  --accent: oklch(0.70 0.19 var(--accent-h));
+  --accent-foreground: oklch(0.16 0.01 285);
+  --ring: oklch(0.70 0.19 var(--accent-h));
+  --accent-subtle: color-mix(in oklab, var(--primary) 16%, transparent);
+  --accent-subtle-border: color-mix(in oklab, var(--primary) 34%, transparent);
+
+  --background: oklch(0.145 0.004 285);
+  --foreground: oklch(0.985 0.001 285);
+  --card: oklch(0.185 0.005 285);
+  --card-foreground: oklch(0.985 0.001 285);
+  --popover: oklch(0.205 0.006 285);
+  --popover-foreground: oklch(0.985 0.001 285);
+  --secondary: oklch(0.235 0.006 285);
+  --secondary-foreground: oklch(0.97 0.002 285);
+  --muted: oklch(0.225 0.006 285);
+  --muted-foreground: oklch(0.70 0.008 285);
+  --border: oklch(0.275 0.006 285);
+  --input: oklch(0.30 0.006 285);
+
+  --destructive: oklch(0.64 0.20 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --destructive-subtle: color-mix(in oklab, var(--destructive) 18%, transparent);
+  --success: oklch(0.72 0.15 150);
+  --success-foreground: oklch(0.16 0.02 150);
+  --success-subtle: color-mix(in oklab, var(--success) 18%, transparent);
+  --warning: oklch(0.80 0.15 80);
+  --warning-foreground: oklch(0.18 0.02 80);
+  --warning-subtle: color-mix(in oklab, var(--warning) 18%, transparent);
+  --info: oklch(0.70 0.15 255);
+  --info-foreground: oklch(0.16 0.02 255);
+  --info-subtle: color-mix(in oklab, var(--info) 18%, transparent);
+
+  --glow: var(--primary);
+
+  --hairline: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --hairline-strong: color-mix(in oklab, var(--foreground) 20%, transparent);
+  --elev-1: 0 1px 2px -1px color-mix(in oklab, black 50%, transparent);
+  --elev-2: 0 2px 8px -2px color-mix(in oklab, black 55%, transparent);
+  --elev-3: 0 10px 30px -10px color-mix(in oklab, black 65%, transparent),
+            inset 0 1px 0 0 color-mix(in oklab, var(--foreground) 6%, transparent);
+  --elev-4: 0 20px 56px -12px color-mix(in oklab, black 70%, transparent),
+            inset 0 1px 0 0 color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+/* ───────────── Base ───────────── */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Smooth-scroll anchor navigation; offset jumps so headings clear the fixed navbar */
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 28%, transparent);
+    color: var(--foreground);
+  }
+
+  /* Accessible, token-driven focus ring for every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ───────────── Helpers copied from the app's design system ───────────── */
+@layer components {
+  /* Type scale — Inter, tight tracking, fluid display (frontend index.css) */
+  .text-display-2xl { font-size: clamp(2.75rem, 1.6rem + 5.2vw, 5.5rem); line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; text-wrap: balance; }
+  .text-display-xl  { font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4rem);   line-height: 1.04; font-weight: 800; letter-spacing: -0.03em; text-wrap: balance; }
+  .text-display-lg  { font-size: clamp(1.875rem, 1.4rem + 2.1vw, 3rem);  line-height: 1.06; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+  .text-heading-3   { font-size: 1.25rem; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; }
+  .text-body-lg     { font-size: 1.125rem; line-height: 1.6; }
+  .text-overline    { font-size: 0.6875rem; line-height: 1.3; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Faint dotted grid + radial mask (page ambient backdrop) */
+  .bg-dots {
+    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 9%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* ATS gauge — liquid fill drifting sideways inside the ring */
+  .ats-wave { animation: atsWaveDrift 6s linear infinite; }
+  .ats-wave--slow { animation: atsWaveDrift 9s linear infinite; }
+
+  /* Tasteful single-hue gradient text (frontend .text-gradient) */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--foreground) 0%,
+      color-mix(in oklab, var(--primary) 90%, var(--foreground)) 58%,
+      var(--primary) 100%
+    );
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+
+  /* Restrained radial glow keyed to --glow (frontend .glow-radial) */
+  .glow-radial {
+    position: relative;
+    isolation: isolate;
+  }
+  .glow-radial::before {
+    content: '';
+    position: absolute;
+    inset: -25% -10% auto -10%;
+    height: 65%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      60% 60% at 50% 0%,
+      color-mix(in oklab, var(--glow) 22%, transparent) 0%,
+      transparent 70%
+    );
+    filter: blur(48px);
+  }
+}
+
+/* ───────────── Keyframes used outside Tailwind utilities ───────────── */
+/* Marquee row (primitives/MarqueeRow uses an arbitrary animation property) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ATS gauge liquid fill (one wave period = 60u in the 0-200 viewBox) */
+@keyframes atsWaveDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-60px); }
+}
+
+/* ───────────── Accessibility: honor reduced motion globally ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
