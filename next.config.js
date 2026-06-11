@@ -36,7 +36,5 @@ module.exports = withSentryConfig(nextConfig, {
   // Quiet locally; verbose in CI for upload diagnostics.
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  // Strip Sentry's debug logger from the production bundle (smaller client JS).
-  disableLogger: true,
   telemetry: false,
 });

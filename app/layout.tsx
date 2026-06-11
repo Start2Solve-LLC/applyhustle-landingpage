@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google';
+import { Clarity } from '@/components/analytics/Clarity';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildMetadata, organizationSchema, seoConfig, websiteSchema } from '@/lib/seo';
 import type { Metadata, Viewport } from 'next';
@@ -79,13 +80,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* Site-wide entity graph: brand name + logo in Google results / knowledge panel. */}
         <JsonLd schema={[organizationSchema(), websiteSchema()]} />
-        {/* Analytics slot: drop your analytics snippet / <Script> component here */}
       </head>
       <body
         suppressHydrationWarning
         className="bg-background font-sans text-foreground antialiased"
       >
         {children}
+        {/* Analytics — loads after interactive, production only. */}
+        <Clarity />
       </body>
     </html>
   );

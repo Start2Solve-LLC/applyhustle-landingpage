@@ -1,6 +1,9 @@
 import { seoConfig } from '@/lib/seo';
 import type { MetadataRoute } from 'next';
 
+// Required for `output: 'export'` — pre-render this route to a static file.
+export const dynamic = 'force-static';
+
 /**
  * Generates /robots.txt. On non-production deployments the whole site is
  * disallowed so staging/preview never gets indexed; production allows

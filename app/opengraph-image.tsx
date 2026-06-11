@@ -5,6 +5,9 @@ import { OG_ALT, OG_CONTENT_TYPE, OG_SIZE, renderBrandCard } from '@/lib/seo/og-
  * route, so all pages get a branded link preview with no hand-designed asset.
  * Add a per-segment opengraph-image.tsx to override for a specific page.
  */
+// Required for `output: 'export'` — pre-render the image to a static file.
+export const dynamic = 'force-static';
+
 export const alt = OG_ALT;
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;

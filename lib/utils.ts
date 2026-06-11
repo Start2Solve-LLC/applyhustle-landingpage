@@ -5,7 +5,9 @@ export function cn(...classes: Array<string | false | null | undefined>): string
 
 /* The main ApplyHustle app is a separate deployment (frontend/, Vite on :5173 in dev).
    All CTAs link into it via NEXT_PUBLIC_APP_URL — see .env.example. */
-const APP_BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:5173';
+// `||` (not `??`) so an empty string — which is what GitHub Actions passes for
+// an unset `${{ vars.X }}` — also falls back instead of producing an invalid URL.
+const APP_BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
 
 /** Absolute URL into the main app, e.g. appUrl('/signup'). */
 export function appUrl(appPath: string): string {
@@ -13,4 +15,4 @@ export function appUrl(appPath: string): string {
 }
 
 /** Public base URL of this landing site (metadata + sitemap). */
-export const siteBaseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+export const siteBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';

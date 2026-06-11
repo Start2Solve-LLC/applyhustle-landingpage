@@ -53,12 +53,16 @@ jobs:
       - name: Next build
         run: npm run build
         env:
+          # Public site config (Repository → Variables).
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
           NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL }}
           NEXT_PUBLIC_SEO_INDEX: 'true'
-          # Sentry: DSN baked into the client bundle; auth token uploads source maps.
-          # All optional — build succeeds (upload just skipped) when unset.
-          NEXT_PUBLIC_SENTRY_DSN: ${{ vars.NEXT_PUBLIC_SENTRY_DSN }}
+          # Analytics + monitoring (Repository → Secrets). NOTE: NEXT_PUBLIC_* values
+          # are baked into the client bundle and are publicly visible — storing them
+          # as secrets keeps them out of the repo, not out of the browser.
+          NEXT_PUBLIC_CLARITY_ID: ${{ secrets.NEXT_PUBLIC_CLARITY_ID }}
+          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          # Source-map upload (optional; build still succeeds when these are unset).
           SENTRY_ORG: ${{ vars.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

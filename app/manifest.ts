@@ -1,6 +1,9 @@
 import { seoConfig } from '@/lib/seo';
 import type { MetadataRoute } from 'next';
 
+// Required for `output: 'export'` — pre-render this route to a static file.
+export const dynamic = 'force-static';
+
 /**
  * Generates /manifest.webmanifest (PWA + Android install metadata). Typed and
  * env-driven — supersedes the static public/logos/site.webmanifest, which is no
