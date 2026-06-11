@@ -53,6 +53,14 @@ const eslintConfig = [
     },
   },
 
+  // CommonJS config files (next.config.js, etc.) legitimately use require().
+  {
+    files: ['**/*.config.js', '**/*.cjs'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
   // Turns off any stylistic rules that would fight Prettier — keep this LAST.
   prettier,
 ];

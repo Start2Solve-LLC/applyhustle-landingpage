@@ -22,4 +22,21 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+const { withSentryConfig } = require('@sentry/nextjs');
+
+// Wrap with Sentry to upload source maps at build time (for readable stack
+// traces). Source-map upload is skipped automatically unless SENTRY_AUTH_TOKEN
+// + SENTRY_ORG + SENTRY_PROJECT are set (e.g. in CI), so local/dev builds are
+// unaffected. No `tunnelRoute` — that needs a server, which a static export
+// (output: 'export') doesn't have.
+module.exports = withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  // Quiet locally; verbose in CI for upload diagnostics.
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  // Strip Sentry's debug logger from the production bundle (smaller client JS).
+  disableLogger: true,
+  telemetry: false,
+});
