@@ -53,9 +53,10 @@ jobs:
       - name: Next build
         run: npm run build
         env:
-          # Public site config (Repository → Variables).
-          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL }}
+          # Public site config. Prefer Repository → Variables; fall back to
+          # Secrets so it resolves whichever tab the value was added under.
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || secrets.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || secrets.NEXT_PUBLIC_APP_URL }}
           NEXT_PUBLIC_SEO_INDEX: 'true'
           # Analytics + monitoring (Repository → Secrets). NOTE: NEXT_PUBLIC_* values
           # are baked into the client bundle and are publicly visible — storing them
@@ -86,8 +87,8 @@ jobs:
           push: false
           tags: applyhustle-landing:ci
           build-args: |
-            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
-            NEXT_PUBLIC_APP_URL=${{ vars.NEXT_PUBLIC_APP_URL }}
+            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL || secrets.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_APP_URL=${{ vars.NEXT_PUBLIC_APP_URL || secrets.NEXT_PUBLIC_APP_URL }}
             NEXT_PUBLIC_SEO_INDEX=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
