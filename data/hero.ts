@@ -37,25 +37,25 @@ export interface HeroContent {
 }
 
 export const heroContent: HeroContent = {
-  badgeLabel: 'AI résumé · ATS · interviews',
+  badgeLabel: '40 Auto-Applications a Day',
   headline: {
-    pre: 'Land your',
-    accent: 'interview call',
-    post: 'within 90 days.',
+    pre: 'Let AI apply.',
+    accent: 'You just show up',
+    post: 'to the interview.',
   },
   copy: {
     us: {
-      pre: 'Premium unlocks autonomous ',
-      strong: 'Auto-Apply',
-      post: ' at volume. Every tier gets ATS scoring, AI interviews, and sponsorship-aware job intel.',
+      pre: 'We tailor your ',
+      strong: 'résumé',
+      post: ' to each job, straight from your profile.',
     },
     intl: {
-      pre: 'AI tailors your résumé per job, scores it against the ATS, and ',
-      strong: 'guides every application',
-      post: ' — tuned for F1 / OPT / sponsorship roles.',
+      pre: 'We tailor your ',
+      strong: 'résumé',
+      post: ' to each job, straight from your profile.',
     },
   },
-  primaryCta: { label: 'Get started — free', appPath: '/signup' },
+  primaryCta: { label: 'Get Started', appPath: '/signup' },
   secondaryCta: { label: 'Try the ATS Checker', appPath: '/ats-checker', noteLabel: 'free' },
   ratingSignal: '4.8 / 5 · loved by job seekers',
   trustSignals: ['No credit card', 'Cancel anytime'],

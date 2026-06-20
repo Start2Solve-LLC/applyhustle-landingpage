@@ -140,6 +140,9 @@
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     text-rendering: optimizeLegibility;
+    /* Reserve the scrollbar gutter so locking body scroll (e.g. the nav drawer)
+       doesn't shift the page horizontally. */
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -201,6 +204,15 @@
     text-transform: uppercase;
   }
 
+  /* Hide scrollbars while keeping the element scrollable (cross-browser) */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Faint dotted grid + radial mask (page ambient backdrop) */
   .bg-dots {
     background-image: radial-gradient(
@@ -235,6 +247,46 @@
     color: transparent;
   }
 
+  /* ─── Page aura — vibrating radial that blends violet + warm amber, fixed to
+     the viewport so the whole site has a softly pulsing colored backdrop on any
+     scroll position. Two counter-pulsing layers give the "vibrating" feel;
+     heavy blur keeps it soft like the reference image. ─── */
+  .page-aura {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: min(1100px, 120vw);
+    height: min(1100px, 120vh);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    filter: blur(80px);
+    /* Violet core melting into warm amber, fading to the cream page bg */
+    background: radial-gradient(
+      circle at 50% 48%,
+      color-mix(in oklab, var(--primary) 50%, transparent) 0%,
+      color-mix(in oklab, var(--primary) 28%, transparent) 26%,
+      color-mix(in oklab, var(--warning) 32%, transparent) 50%,
+      transparent 73%
+    );
+    animation: auraVibrate 4.5s var(--ease-in-out) infinite;
+  }
+  /* Secondary layer — smaller, warmer, faster, offset for the shimmer/vibration */
+  .page-aura::after {
+    content: '';
+    position: absolute;
+    inset: 16% 12% auto 20%;
+    height: 58%;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in oklab, var(--warning) 42%, transparent) 0%,
+      color-mix(in oklab, var(--primary) 26%, transparent) 48%,
+      transparent 70%
+    );
+    animation: auraVibrateAlt 3.2s var(--ease-in-out) infinite;
+  }
+
   /* Restrained radial glow keyed to --glow (frontend .glow-radial) */
   .glow-radial {
     position: relative;
@@ -256,6 +308,67 @@
   }
 }
 
+/* ───────────── Custom lazy-trailing cursor ───────────── */
+/* Hide the native cursor only while the JS-driven cursor is active (mouse
+   devices, motion allowed). The class is added by components/motion/CustomCursor. */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.cursor-arrow,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+/* Exact-tracking arrow — a larger version of the normal mouse pointer */
+.cursor-arrow {
+  margin: -3px 0 0 -3px; /* nudge so the arrow tip sits on the real pointer */
+  transition: opacity 0.2s ease;
+}
+.cursor-arrow__icon {
+  height: 30px;
+  width: 30px;
+  fill: var(--foreground);
+  color: var(--background); /* outline (stroke = currentColor) */
+  filter: drop-shadow(0 1px 2px color-mix(in oklab, var(--foreground) 35%, transparent));
+}
+/* Lazily-trailing ring (outer translates via JS; inner handles scale/colour) */
+.cursor-ring {
+  z-index: 9998;
+  transition: opacity 0.2s ease;
+}
+.cursor-ring__circle {
+  display: block;
+  margin: -18px 0 0 -18px;
+  height: 36px;
+  width: 36px;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in oklab, var(--primary) 55%, transparent);
+  transition:
+    transform 0.18s var(--ease-out-quint),
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+/* Grow + tint over interactive elements */
+.cursor-ring.is-hover .cursor-ring__circle {
+  transform: scale(1.7);
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primary) 70%, transparent);
+}
+/* Contract on click */
+.cursor-ring.is-press .cursor-ring__circle {
+  transform: scale(0.85);
+}
+.cursor-ring.is-hover.is-press .cursor-ring__circle {
+  transform: scale(1.45);
+}
+
 /* ───────────── Keyframes used outside Tailwind utilities ───────────── */
 /* Marquee row (primitives/MarqueeRow uses an arbitrary animation property) */
 @keyframes marquee {
@@ -264,6 +377,32 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* Hero aura — primary layer: breathe + subtle vibration via scale/opacity */
+@keyframes auraVibrate {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Hero aura — secondary warm layer, counter-phased for the shimmer */
+@keyframes auraVibrateAlt {
+  0%,
+  100% {
+    transform: scale(1.05) translate(0, 0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(0.92) translate(2%, -3%);
+    opacity: 0.55;
   }
 }
 

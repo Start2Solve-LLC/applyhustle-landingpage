@@ -31,6 +31,16 @@ module.exports = {
           'Roboto',
           'sans-serif',
         ],
+        // Navbar display face — Space Grotesk via next/font (--font-nav)
+        nav: ['var(--font-nav)', 'var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Headline/price display face — Sora via next/font (--font-display)
+        display: [
+          'var(--font-display)',
+          'var(--font-sans)',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
         mono: [
           'ui-monospace',
           'SFMono-Regular',

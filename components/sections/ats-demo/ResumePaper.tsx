@@ -11,14 +11,14 @@ const LINE_WIDTH_CLASSES = ['w-[96%]', 'w-[88%]', 'w-[72%]', 'w-[80%]', 'w-[64%]
 /* Faux résumé section — heading + skeleton lines. */
 function ResumeSection({ title, lines }: { title: string; lines: number }) {
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1">
       <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground/80">
         {title}
       </div>
       {Array.from({ length: lines }).map((_, i) => (
         <div
           key={i}
-          className={cn('h-1.5 rounded-full bg-foreground/10', LINE_WIDTH_CLASSES[i % 5])}
+          className={cn('h-1 rounded-full bg-foreground/10', LINE_WIDTH_CLASSES[i % 5])}
         />
       ))}
     </div>
@@ -70,16 +70,16 @@ export function ResumePaper({
           : undefined
       }
       className={cn(
-        'group relative block w-full overflow-hidden rounded-xl border bg-card/80 p-5 text-left shadow-elev-2 transition-colors sm:p-6',
+        'group relative block w-full overflow-hidden rounded-xl border bg-card/80 p-4 text-left shadow-elev-2 transition-colors sm:p-5',
         interactive ? 'cursor-pointer border-dashed' : 'cursor-default border-solid',
         drag ? 'border-primary bg-accent-subtle' : 'border-border/70 hover:border-primary/50',
       )}
       aria-label={interactive ? 'Upload your résumé' : 'Résumé preview'}
     >
       {/* Header */}
-      <div className="flex items-center gap-3">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-accent-subtle text-primary">
-          <FileText className="h-5 w-5" />
+      <div className="flex items-center gap-2.5">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent-subtle text-primary">
+          <FileText className="h-4 w-4" />
         </span>
         <div className="min-w-0">
           <div className="truncate text-sm font-bold text-foreground">{name || 'Your résumé'}</div>
@@ -89,16 +89,13 @@ export function ResumePaper({
         </div>
       </div>
 
-      {/* Body — faux sections */}
-      <div className="mt-5 grid grid-cols-[1.4fr_1fr] gap-x-5 gap-y-4">
+      {/* Body — faux sections (compact) */}
+      <div className="mt-3 grid grid-cols-[1.4fr_1fr] gap-x-5 gap-y-2.5">
         <div className="col-span-2">
-          <ResumeSection title="Profile" lines={2} />
+          <ResumeSection title="Profile" lines={1} />
         </div>
-        <ResumeSection title="Experience" lines={4} />
-        <ResumeSection title="Skills" lines={4} />
-        <div className="col-span-2">
-          <ResumeSection title="Education" lines={2} />
-        </div>
+        <ResumeSection title="Experience" lines={3} />
+        <ResumeSection title="Skills" lines={3} />
       </div>
 
       {/* Scan beam */}
@@ -133,7 +130,7 @@ export function ResumePaper({
 
       {/* Idle dropzone hint */}
       {interactive && (
-        <div className="mt-5 flex items-center justify-center gap-2 rounded-lg border border-dashed border-border/70 bg-background/40 px-3 py-2.5 text-xs font-medium text-muted-foreground transition-colors group-hover:border-primary/50 group-hover:text-foreground">
+        <div className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-dashed border-border/70 bg-background/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors group-hover:border-primary/50 group-hover:text-foreground">
           <UploadCloud className="h-4 w-4 text-primary" />
           Drop your résumé here, or <span className="text-primary">browse</span>
         </div>

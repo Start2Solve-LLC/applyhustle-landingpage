@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Inter, Space_Grotesk, Sora } from 'next/font/google';
 import { Clarity } from '@/components/analytics/Clarity';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildMetadata, organizationSchema, seoConfig, websiteSchema } from '@/lib/seo';
@@ -10,6 +10,23 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap', // show text immediately with a fallback, swap to Inter (no FOIT)
+});
+
+// Display/nav face — geometric grotesque used for the navbar (stand-in for
+// "Stack Sans Notch"; swap to next/font/local once the licensed file is added).
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-nav',
+  weight: ['500', '600', '700'],
+  display: 'swap',
+});
+
+// Attention-grabbing display face — used for pricing/section headlines & prices.
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['500', '600', '700', '800'],
+  display: 'swap',
 });
 
 /* Cache-busting version for favicons. Bump (e.g. '3') each time you replace the
@@ -75,7 +92,11 @@ const themeInitScript = `(function () {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${spaceGrotesk.variable} ${sora.variable}`}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* Site-wide entity graph: brand name + logo in Google results / knowledge panel. */}

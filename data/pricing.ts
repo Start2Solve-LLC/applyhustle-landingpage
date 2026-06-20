@@ -19,12 +19,26 @@ export interface PricingTier {
   highlighted?: boolean;
 }
 
+/** One cell of the comparison matrix:
+ *  - boolean → check / dash
+ *  - string  → literal value ("1", "Unlimited")
+ *  - { us, intl } → region-dependent label */
+export type MatrixCell = boolean | string | { us: string; intl: string };
+
+export interface ComparisonRow {
+  label: string;
+  /** Per-tier values, ordered to match `tiers` ([Free, Pro, Premium]). */
+  cells: [MatrixCell, MatrixCell, MatrixCell];
+}
+
 export interface PricingSectionContent {
   eyebrow: string;
   title: { pre: string; accent: string };
   currencySymbol: string;
   tiers: PricingTier[];
   highlightBadgeLabel: string;
+  /** Feature-by-tier matrix rows for the comparison table. */
+  comparison: ComparisonRow[];
   /** Extra Premium bullet, region-dependent. */
   premiumRegionalBullet: { us: string; intl: string };
   footnote: { us: string; intl: string };
@@ -35,6 +49,21 @@ export const pricingSection: PricingSectionContent = {
   title: { pre: 'Start free. ', accent: 'Upgrade when it pays off.' },
   currencySymbol: '$',
   highlightBadgeLabel: 'Most popular',
+  comparison: [
+    { label: 'ATS Checker', cells: [true, true, true] },
+    { label: 'Résumé parsing', cells: [true, true, true] },
+    { label: 'Application tracker', cells: [true, true, true] },
+    { label: 'Résumé redesigns', cells: ['1', 'Unlimited', 'Unlimited'] },
+    { label: 'Job feed', cells: [false, true, true] },
+    { label: 'Cover letters', cells: [false, true, true] },
+    { label: 'LinkedIn analyzer', cells: [false, true, true] },
+    { label: 'AI mock interviews', cells: [false, false, true] },
+    { label: 'Priority support', cells: [false, false, true] },
+    {
+      label: 'Auto-Apply',
+      cells: [false, false, { us: 'Autonomous', intl: 'Guided' }],
+    },
+  ],
   premiumRegionalBullet: {
     us: 'Autonomous Auto-Apply',
     intl: 'High-volume guided applying',
@@ -69,6 +98,7 @@ export const pricingSection: PricingSectionContent = {
       ctaLabel: 'Choose Pro',
       ctaAppPath: '/signup',
       ctaVariant: 'default',
+      highlighted: true,
     },
     {
       name: 'Premium',
@@ -79,7 +109,6 @@ export const pricingSection: PricingSectionContent = {
       ctaLabel: 'Go Premium',
       ctaAppPath: '/signup',
       ctaVariant: 'glow',
-      highlighted: true,
     },
   ],
 };

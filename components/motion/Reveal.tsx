@@ -14,6 +14,10 @@ interface RevealProps extends React.HTMLAttributes<HTMLDivElement> {
   distance?: number;
   /** Seconds to delay the reveal. */
   delay?: number;
+  /** Initial scale to grow from (e.g. 0.9 for a zoom-in). Omit for no scaling. */
+  scale?: number;
+  /** Seconds for the reveal (defaults to the slow token). */
+  duration?: number;
   as?: 'div' | 'section' | 'span' | 'li' | 'article' | 'header' | 'footer';
   children: React.ReactNode;
 }
@@ -41,6 +45,8 @@ export function Reveal({
   from = 'up',
   distance = 16,
   delay = 0,
+  scale,
+  duration = DUR.slow,
   as = 'div',
   className,
   children,
@@ -52,8 +58,14 @@ export function Reveal({
   const variants: Variants = reduce
     ? reducedFade
     : {
-        hidden: { opacity: 0, ...offset(from, distance) },
-        show: { opacity: 1, x: 0, y: 0, transition: { duration: DUR.slow, ease: EASE_OUT, delay } },
+        hidden: { opacity: 0, ...offset(from, distance), ...(scale != null && { scale }) },
+        show: {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          ...(scale != null && { scale: 1 }),
+          transition: { duration, ease: EASE_OUT, delay },
+        },
       };
 
   return (

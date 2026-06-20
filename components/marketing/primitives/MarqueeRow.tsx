@@ -40,7 +40,7 @@ export function MarqueeRow({
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent" />
       <div
         className={cn(
-          'flex w-max [animation:marquee_linear_infinite] hover:[animation-play-state:paused]',
+          'flex w-max [animation-name:marquee] [animation-timing-function:linear] [animation-iteration-count:infinite] hover:[animation-play-state:paused]',
           durationClassName,
         )}
       >

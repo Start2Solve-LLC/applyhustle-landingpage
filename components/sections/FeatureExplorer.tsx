@@ -3,34 +3,34 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import * as React from 'react';
 import {
-  AtsScoreCard,
-  ResumeRedesignMock,
-  JobFeedMock,
-  InterviewReportCard,
-  LinkedInGapMock,
-  AutoApplyStream,
-} from '@/components/marketing/mocks';
+  AtsScoreDemo,
+  ResumeRedesignDemo,
+  JobFeedDemo,
+  MockInterviewDemo,
+  LinkedInDemo,
+  AutoApplyDemo,
+} from '@/components/marketing/demos';
 import { SectionHeading, BrowserChrome } from '@/components/marketing/primitives';
 import { Reveal } from '@/components/motion/Reveal';
 import { explorerSection, type ExplorerTabId } from '@/data/featureExplorer';
 import { EASE_OUT } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
-/** Maps a tab id to its product mock. */
+/** Maps a tab id to its animated, step-by-step feature demo. */
 function tabMock(id: ExplorerTabId): React.ReactNode {
   switch (id) {
     case 'ats':
-      return <AtsScoreCard />;
+      return <AtsScoreDemo />;
     case 'resume':
-      return <ResumeRedesignMock />;
+      return <ResumeRedesignDemo />;
     case 'jobs':
-      return <JobFeedMock />;
+      return <JobFeedDemo />;
     case 'interview':
-      return <InterviewReportCard />;
+      return <MockInterviewDemo />;
     case 'linkedin':
-      return <LinkedInGapMock />;
+      return <LinkedInDemo />;
     case 'auto':
-      return <AutoApplyStream />;
+      return <AutoApplyDemo />;
   }
 }
 
@@ -49,7 +49,7 @@ export function FeatureExplorer() {
         const i = tabs.findIndex((t) => t.id === cur);
         return tabs[(i + 1) % tabs.length].id;
       });
-    }, 5000);
+    }, 8000);
     return () => clearInterval(id);
   }, [reduce, tabs]);
 
@@ -61,7 +61,10 @@ export function FeatureExplorer() {
   const activeTab = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
-    <section id="explore" className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+    <section
+      id="explore"
+      className="px-4 pt-12 pb-6 sm:px-6 sm:pt-16 sm:pb-8 lg:px-8 lg:pt-20 lg:pb-10"
+    >
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading

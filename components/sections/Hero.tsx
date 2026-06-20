@@ -3,7 +3,7 @@
 import { ArrowRight, Zap, Star, CheckCircle2, TrendingUp } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { LiveStatsCard } from '@/components/marketing/mocks';
-import { RegionToggle, BrowserChrome } from '@/components/marketing/primitives';
+import { BrowserChrome } from '@/components/marketing/primitives';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { Badge } from '@/components/ui/Badge';
 import { ButtonLink } from '@/components/ui/Button';
@@ -12,11 +12,10 @@ import { appUrl } from '@/lib/utils';
 
 interface HeroProps {
   isUS: boolean;
-  onRegionChange: (isUS: boolean) => void;
 }
 
 /** Above-the-fold hero — port of the app's marketing Hero (region-aware copy + live stats mock). */
-export function Hero({ isUS, onRegionChange }: HeroProps) {
+export function Hero({ isUS }: HeroProps) {
   const reduce = useReducedMotion();
   const {
     badgeLabel,
@@ -32,40 +31,36 @@ export function Hero({ isUS, onRegionChange }: HeroProps) {
   const paragraph = isUS ? copy.us : copy.intl;
 
   return (
-    <section className="glow-radial relative px-4 pt-14 pb-20 sm:px-6 sm:pt-20 lg:px-8 lg:pb-28">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+    <section className="relative px-4 pt-4 pb-12 sm:px-6 sm:pt-6 lg:px-8 lg:pb-16">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
         {/* Copy column */}
-        <Stagger className="text-center lg:text-left" gap={0.08}>
+        <Stagger className="text-center lg:text-left" gap={0.07}>
           <StaggerItem className="flex justify-center lg:justify-start">
-            <RegionToggle isUS={isUS} onChange={onRegionChange} />
-          </StaggerItem>
-
-          <StaggerItem className="mt-6 flex justify-center lg:justify-start">
             <Badge variant="glow" className="cursor-default">
               <Zap className="h-3.5 w-3.5" />
               {badgeLabel}
             </Badge>
           </StaggerItem>
 
-          <h1 className="mt-6 break-words text-display-2xl text-foreground">
+          <h1 className="mt-4 break-words text-display-xl text-foreground">
             <span className="block">{headline.pre}</span>
             <span className="block text-gradient">{headline.accent}</span>
             <span className="block">{headline.post}</span>
           </h1>
 
           <StaggerItem>
-            <p className="mx-auto mt-6 max-w-xl text-pretty text-body-lg text-muted-foreground lg:mx-0">
+            <p className="mx-auto mt-4 max-w-md text-pretty text-base text-muted-foreground lg:mx-0">
               {paragraph.pre}
               <strong className="font-semibold text-foreground">{paragraph.strong}</strong>
               {paragraph.post}
             </p>
           </StaggerItem>
 
-          <StaggerItem className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start">
+          <StaggerItem className="mt-6 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start">
             <ButtonLink
               href={appUrl(primaryCta.appPath)}
               variant="glow"
-              size="xl"
+              size="lg"
               className="group w-full sm:w-auto"
             >
               {primaryCta.label}
@@ -74,7 +69,7 @@ export function Hero({ isUS, onRegionChange }: HeroProps) {
             <ButtonLink
               href={appUrl(secondaryCta.appPath)}
               variant="outline"
-              size="xl"
+              size="lg"
               className="w-full sm:w-auto"
             >
               {secondaryCta.label}
@@ -86,7 +81,7 @@ export function Hero({ isUS, onRegionChange }: HeroProps) {
             </ButtonLink>
           </StaggerItem>
 
-          <StaggerItem className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground lg:justify-start">
+          <StaggerItem className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground lg:justify-start">
             <span className="inline-flex items-center gap-1.5">
               <Star className="h-3.5 w-3.5 fill-warning text-warning" /> {ratingSignal}
             </span>

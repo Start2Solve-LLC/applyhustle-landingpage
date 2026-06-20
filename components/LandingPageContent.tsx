@@ -4,7 +4,9 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { BackToTop } from '@/components/layout/BackToTop';
 import { Navbar } from '@/components/layout/Navbar';
+import { CustomCursor } from '@/components/motion/CustomCursor';
 import { LazyMount } from '@/components/motion/LazyMount';
+import { ScrollBend } from '@/components/motion/ScrollBend';
 
 // ── Above the fold: eager (part of the initial bundle, painted first) ────────
 import { Hero } from '@/components/sections/Hero';
@@ -70,50 +72,75 @@ export function LandingPageContent() {
   const [isUS, setIsUS] = useState(true);
 
   return (
-    <div id="top" className="relative min-h-screen overflow-x-clip bg-background text-foreground">
-      {/* Ambient backdrop */}
+    <div id="top" className="relative min-h-screen overflow-x-clip text-foreground">
+      {/* Custom lazy-trailing pointer (mouse devices, motion allowed) */}
+      <CustomCursor />
+
+      {/* Ambient backdrop — dotted grid + a fixed, vibrating warm-violet aura
+          that pulses behind the entire page on any scroll position. */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="bg-dots mask-radial absolute inset-0 opacity-50" />
-        <div className="absolute left-1/2 top-[-8%] h-[480px] w-[760px] -translate-x-1/2 animate-pulse-slow rounded-full bg-primary/10 blur-[130px]" />
+        <div className="page-aura" aria-hidden />
       </div>
 
-      <Navbar />
+      <Navbar isUS={isUS} onRegionChange={setIsUS} />
 
       <main>
         {/* Above the fold — eager */}
-        <Hero isUS={isUS} onRegionChange={setIsUS} />
+        <Hero isUS={isUS} />
         <LogosStrip />
 
-        {/* Below the fold — lazy, mounted on scroll */}
-        <LazyMount minHeight={620}>
-          <InteractiveAtsDemo />
+        {/* Traction banner — right under the social-proof logos strip */}
+        <LazyMount minHeight={240}>
+          <ScrollBend>
+            <MetricsBand />
+          </ScrollBend>
+        </LazyMount>
+
+        {/* Below the fold — lazy, mounted on scroll. Each section "bends" on scroll. */}
+        <LazyMount minHeight={520}>
+          <ScrollBend>
+            <InteractiveAtsDemo />
+          </ScrollBend>
         </LazyMount>
         <LazyMount minHeight={720}>
-          <BentoFeatures isUS={isUS} />
+          <ScrollBend>
+            <BentoFeatures isUS={isUS} />
+          </ScrollBend>
         </LazyMount>
         <LazyMount minHeight={640}>
-          <FeatureExplorer />
+          <ScrollBend>
+            <FeatureExplorer />
+          </ScrollBend>
         </LazyMount>
         <LazyMount minHeight={560}>
-          <HowItWorks />
+          <ScrollBend>
+            <HowItWorks />
+          </ScrollBend>
         </LazyMount>
         <LazyMount minHeight={640}>
-          <TierComparison isUS={isUS} onRegionChange={setIsUS} />
-        </LazyMount>
-        <LazyMount minHeight={280}>
-          <MetricsBand />
+          <ScrollBend>
+            <TierComparison isUS={isUS} onRegionChange={setIsUS} />
+          </ScrollBend>
         </LazyMount>
         <LazyMount minHeight={520}>
-          <Testimonials />
+          <ScrollBend>
+            <Testimonials />
+          </ScrollBend>
         </LazyMount>
         <LazyMount minHeight={420}>
-          <FounderNote />
+          <ScrollBend>
+            <FounderNote />
+          </ScrollBend>
         </LazyMount>
+        {/* FAQ kept un-bent — its sticky left rail can't live inside a transformed ancestor. */}
         <LazyMount minHeight={520}>
           <Faq />
         </LazyMount>
         <LazyMount minHeight={360}>
-          <FinalCta />
+          <ScrollBend>
+            <FinalCta />
+          </ScrollBend>
         </LazyMount>
       </main>
 
